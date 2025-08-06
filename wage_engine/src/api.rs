@@ -80,8 +80,7 @@ async fn calculate_handler(
 pub async fn serve(addr: &str, tax_law_dir: PathBuf) -> Result<()> {
     let (router, _state) = build_router(tax_law_dir).await?;
     println!("Server listening on {}", addr);
-    axum::Server::bind(&addr.parse().unwrap())
-        .serve(router.into_make_service())
+    (axum::serve(tokio::net::TcpListener::bind(addr).await?, router.into_make_service())
         .await
-        .map_err(|e| e.into())
+        .map_err(|e| e.into()))
 }

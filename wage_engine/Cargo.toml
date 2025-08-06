@@ -27,5 +27,6 @@ thiserror = "1.0"
 # need the API portion of this engine you may remove these
 # dependencies and the `api.rs` module.  They are included here to
 # demonstrate how the engine could be surfaced over HTTP.
-tokio = { version = "1.35", features = ["macros", "rt-multi-thread"] }
-axum = { version = "0.7", default-features = false, features = ["json"] }
+tokio = { version = "1.37", features = ["full"] }
+axum = "0.7"
+hyper = { version = "1", features = ["full"] }
