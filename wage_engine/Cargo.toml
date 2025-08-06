@@ -1,0 +1,31 @@
+## Wage Engine Cargo Configuration
+##
+## This Cargo manifest defines the dependencies and metadata for the
+## `wage_engine` crate. The project is organized as a binary crate
+## exposing a library for payroll calculation alongside a small HTTP
+## interface.  While the code included in this repository should
+## compile and run once the necessary dependencies are available, the
+## environment used to construct this answer does not ship with the
+## Rust toolchain preinstalled.  You can build and run the server
+## locally by installing Rust from <https://rustup.rs>.
+
+[package]
+name = "wage_engine"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+rayon = "1.6"
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Tokio and Axum are used to expose a simple HTTP API.  If you do not
+# need the API portion of this engine you may remove these
+# dependencies and the `api.rs` module.  They are included here to
+# demonstrate how the engine could be surfaced over HTTP.
+tokio = { version = "1.35", features = ["macros", "rt-multi-thread"] }
+axum = { version = "0.7", default-features = false, features = ["json"] }

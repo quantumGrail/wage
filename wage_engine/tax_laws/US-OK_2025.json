@@ -1,0 +1,7 @@
+{
+  "region": "US-OK",
+  "version": "2025",
+  "rules": {
+    "rate": 0.05
+  }
+}
